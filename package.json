@@ -18,5 +18,8 @@
   "homepage": "https://github.com/breadoliveoilsalt/testing-project#readme",
   "devDependencies": {
     "mocha": "^6.1.4"
+  },
+  "dependencies": {
+    "chai": "^4.2.0"
   }
 }
