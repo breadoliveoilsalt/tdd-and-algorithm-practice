@@ -1,0 +1,19 @@
+{
+  "name": "testing-project",
+  "version": "1.0.0",
+  "description": "Experiments testing various algorithms using mocha and chai",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/breadoliveoilsalt/testing-project.git"
+  },
+  "author": "Tony Distinti",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/breadoliveoilsalt/testing-project/issues"
+  },
+  "homepage": "https://github.com/breadoliveoilsalt/testing-project#readme"
+}
