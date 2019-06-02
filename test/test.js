@@ -33,7 +33,8 @@ describe("Test", function(){
     it("should return a number equal to five plus the argument passed to the function",
     function(){
       let result = addFiveTo(17)
-      expect.result.to.equal(22)
+      expect(result).to.equal(22)
+      // Note: this does not work: expect(addFiveTo(10)).to.equal(15))
     })
   })
 
