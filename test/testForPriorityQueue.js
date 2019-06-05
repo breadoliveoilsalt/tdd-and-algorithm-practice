@@ -4,11 +4,12 @@ var expect = chai.expect
 var should = chai.should()
 
 var Node = require('../algos/priorityQueue').Node
+var PriorityQueue = require('../algos/priorityQueue').PriorityQueue
 
 
 describe("Priority Queue Tests", function() {
 
-  describe("Node class", function() {
+  describe("Node Class", function() {
 
     it("should accept an object with value and priority keys as an argument", function() {
       let n = new Node({value: 15, priority: 25})
@@ -25,5 +26,16 @@ describe("Priority Queue Tests", function() {
       // expect(new Node({value: 15, priority: 25.5})).to.throw(Error)
       // expect(new Node({value: 15, priority: 25.5})).to.throw(Error, "Priority must be an integer between 1 and 100 inclusive.")
     })
+  })
+
+  describe("Priority Queue Class", function(){
+
+    it("should initialize with a property 'data' set to an empty array", function(){
+      let pq = new PriorityQueue()
+      expect(pq).to.be.a("object")
+      expect(pq).to.have.property("data")
+      expect(pq.data).to.be.a("array").with.lengthOf(0)
+    })
+
   })
 })
