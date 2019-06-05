@@ -5,6 +5,17 @@ var should = chai.should()
 
 var Node = require('../algos/priorityQueue').Node
 var PriorityQueue = require('../algos/priorityQueue').PriorityQueue
+var errorTester = require('../algos/priorityQueue').errorTester
+
+console.log(errorTester)
+
+describe("errorTester", function() {
+  it("should throw an error and the test should know that", function(){
+    // This passes.
+    // NOTE the need to use arrow function below to call error and recognize that error is thrown.
+    expect(() => errorTester()).to.throw()
+  })
+})
 
 
 describe("Priority Queue Tests", function() {
