@@ -13,6 +13,7 @@ describe("errorTester", function() {
   it("should throw an error and the test should know that", function(){
     // This passes.
     // NOTE the need to use arrow function below to call error and recognize that error is thrown.
+    // See here: https://stackoverflow.com/questions/21587122/mocha-chai-expect-to-throw-not-catching-thrown-errors
     expect(() => errorTester()).to.throw()
   })
 })
@@ -36,6 +37,13 @@ describe("Priority Queue Tests", function() {
       // assert.throw(new Node({}), Error)
       // expect(new Node({value: 15, priority: 25.5})).to.throw(Error)
       // expect(new Node({value: 15, priority: 25.5})).to.throw(Error, "Priority must be an integer between 1 and 100 inclusive.")
+      // BUT after playing with errorTester test above, this works:
+      expect(() => new Node({value: 15, priority: 25.5})).to.throw(Error, "Priority must be an integer between 1 and 100 inclusive.")
+      expect(() => new Node({value: 15})).to.throw(Error, "Priority must be an integer between 1 and 100 inclusive.")
+    })
+
+    it("should throw an error when no value is provided", function() {
+      expect(() => new Node({priority: 25})).to.throw(Error, "A value must be provided for a valid Node.")
     })
   })
 
