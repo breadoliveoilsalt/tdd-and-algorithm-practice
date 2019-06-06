@@ -36,6 +36,11 @@ class PriorityQueue {
     this.data = []
   }
 
+  insert(value, priority) {
+    let node = new Node({value: value, priority: priority})
+    this.data.push(node)
+  }
+
 }
 
 function errorTester() {

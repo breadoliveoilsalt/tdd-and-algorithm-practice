@@ -7,13 +7,11 @@ var Node = require('../algos/priorityQueue').Node
 var PriorityQueue = require('../algos/priorityQueue').PriorityQueue
 var errorTester = require('../algos/priorityQueue').errorTester
 
-console.log(errorTester)
-
 describe("errorTester", function() {
   it("should throw an error and the test should know that", function(){
-    // This passes.
-    // NOTE the need to use arrow function below to call error and recognize that error is thrown.
-    // See here: https://stackoverflow.com/questions/21587122/mocha-chai-expect-to-throw-not-catching-thrown-errors
+      // This passes.
+      // NOTE the need to use arrow function below to call error and recognize that error is thrown.
+      // See here: https://stackoverflow.com/questions/21587122/mocha-chai-expect-to-throw-not-catching-thrown-errors
     expect(() => errorTester()).to.throw()
   })
 })
@@ -44,16 +42,32 @@ describe("Priority Queue Tests", function() {
 
     it("should throw an error when no value is provided", function() {
       expect(() => new Node({priority: 25})).to.throw(Error, "A value must be provided for a valid Node.")
+      expect(new Node({priority: 25, value: 0})).to.be.a("object")
     })
   })
 
   describe("Priority Queue Class", function(){
 
-    it("should initialize with a property 'data' set to an empty array", function(){
+    it("should initialize an instance of the class with a property 'data' set to an empty array", function(){
       let pq = new PriorityQueue()
       expect(pq).to.be.a("object")
       expect(pq).to.have.property("data")
       expect(pq.data).to.be.a("array").with.lengthOf(0)
+    })
+
+    describe("#insert", function(){
+        it("should insert a Node into the data property", function() {
+          // REFACTOR TO DECOUPLE CLASSES
+          let pq1 = new PriorityQueue()
+          pq1.insert("apple", 24)
+          expect(pq1.data).to.be.a("array").with.lengthOf(1)
+          expect(pq1.data[0]).to.be.a("node")
+          pq1.insert(100, 1)
+          expect(pq1.data).to.be.a("array").with.lengthOf(2)
+        })
+        // it("should call #bubbleUpFrom to move the inserted Node to the correct position", function() {
+        //
+        // })
     })
 
   })
