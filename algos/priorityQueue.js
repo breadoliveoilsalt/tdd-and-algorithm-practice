@@ -1,6 +1,7 @@
 
 
 // Note that this is intentionally a maxheap structure. Some advocate for minheap.
+// for testing at the node console: let {Node} = require('./algos/priorityQueue')
 
 class Node {
 
@@ -36,9 +37,15 @@ class PriorityQueue {
     this.data = []
   }
 
-  insert(value, priority) {
-    let node = new Node({value: value, priority: priority})
+  insert(node) {
+    this.checkValidNode(node)
     this.data.push(node)
+  }
+
+  checkValidNode(node) {
+    if (!(node instanceof Node)) {
+      throw new Error("Input is not a valid node.")
+    }
   }
 
 }
