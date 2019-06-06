@@ -6,10 +6,11 @@ class Node {
 
   constructor(attributes) {
     this.checkValidPriority(attributes.priority),
-    // An attempt to have tests recognize that an error is thrown.  Does not work.
-    // if (attributes.priority % 1 !== 0 || attributes.priority < 1 || attributes.priority > 100) {
-    //   throw new Error("Priority must be an integer between 1 and 100 inclusive.")
-    // }
+    this.checkValidValue(attributes.value),
+        // An attempt to have tests recognize that an error is thrown.  Does not work.
+        // if (attributes.priority % 1 !== 0 || attributes.priority < 1 || attributes.priority > 100) {
+        //   throw new Error("Priority must be an integer between 1 and 100 inclusive.")
+        // }
     this.priority = attributes.priority,
     this.value = attributes.value
   }
@@ -17,6 +18,12 @@ class Node {
   checkValidPriority(priority) {
     if (priority % 1 !== 0 || priority < 1 || priority > 100) {
       throw new Error("Priority must be an integer between 1 and 100 inclusive.")
+    }
+  }
+
+  checkValidValue(value) {
+    if (value === null || value === undefined) {
+      throw new Error("A value must be provided for a valid Node.")
     }
   }
 
