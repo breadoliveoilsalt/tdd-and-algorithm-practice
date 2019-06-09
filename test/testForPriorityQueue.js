@@ -3,6 +3,8 @@ var assert = chai.assert
 var expect = chai.expect
 var should = chai.should()
 
+var sinon = require('sinon');
+
 var Node = require('../algos/priorityQueue').Node
 var PriorityQueue = require('../algos/priorityQueue').PriorityQueue
 var errorTester = require('../algos/priorityQueue').errorTester
@@ -57,7 +59,7 @@ describe("Priority Queue Tests", function() {
 
     describe("#insert", function(){
         it("should insert a Node into the data property", function() {
-  
+
           let n1 = new Node({value: "apple", priority: 24})
           let pq1 = new PriorityQueue()
           pq1.insert(n1)
@@ -69,9 +71,13 @@ describe("Priority Queue Tests", function() {
           pq1.insert(n2)
           expect(pq1.data).to.be.a("array").with.lengthOf(2)
         })
-        // it("should call #bubbleUpFrom to move the inserted Node to the correct position", function() {
-        //
-        // })
+
+        it("should call #bubbleUpFrom to move the inserted Node to the correct position", function() {
+          let n1 = new Node({value: "apple", priority: 24})
+          let pq1 = new PriorityQueue()
+          pq1.insert(n1)
+          // TO FOLLOW UP ON CALLING A SPY
+        })
     })
 
   })
