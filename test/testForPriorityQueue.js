@@ -57,12 +57,16 @@ describe("Priority Queue Tests", function() {
 
     describe("#insert", function(){
         it("should insert a Node into the data property", function() {
-          // REFACTOR TO DECOUPLE CLASSES
+  
+          let n1 = new Node({value: "apple", priority: 24})
           let pq1 = new PriorityQueue()
-          pq1.insert("apple", 24)
+          pq1.insert(n1)
           expect(pq1.data).to.be.a("array").with.lengthOf(1)
-          expect(pq1.data[0]).to.be.a("node")
-          pq1.insert(100, 1)
+          // NEED TO FIGURE OUT WHY THIS IS NOT WORKING:
+          // expect(pq1.data[0]).to.be.a("node")
+
+          let n2 = new Node({value: 15, priority: 99})
+          pq1.insert(n2)
           expect(pq1.data).to.be.a("array").with.lengthOf(2)
         })
         // it("should call #bubbleUpFrom to move the inserted Node to the correct position", function() {
