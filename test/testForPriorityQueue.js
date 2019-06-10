@@ -73,11 +73,16 @@ describe("Priority Queue Tests", function() {
         })
 
         it("should call #bubbleUpFrom to move the inserted Node to the correct position", function() {
-          // let n1 = new Node({value: "apple", priority: 24})
-          // let pq1 = new PriorityQueue()
-          // pq1.insert(n1)
-          // // TO FOLLOW UP ON CALLING A SPY
-          sinon.spy()
+          let n1 = new Node({value: "apple", priority: 24})
+          let pq1 = new PriorityQueue()
+          // let insertSpy = sinon.spy(pq1, "insert")
+          let bubbleUpFromSpy = sinon.spy(pq1, "bubbleUpFrom")
+          pq1.insert(n1)
+
+          expect(bubbleUpFromSpy.calledOnce).to.be.true
+          insertSpy.restore()
+          bubbleUpFromSpy.restore()
+
         })
     })
 
