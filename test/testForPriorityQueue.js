@@ -5,9 +5,8 @@ var should = chai.should()
 
 var sinon = require('sinon');
 
-var Node = require('../algos/priorityQueue').Node
-var PriorityQueue = require('../algos/priorityQueue').PriorityQueue
-var errorTester = require('../algos/priorityQueue').errorTester
+var { Node } = require('../algos/priorityQueue')
+var { PriorityQueue, errorTester } = require('../algos/priorityQueue')
 
 describe("errorTester", function() {
   it("should throw an error and the test should know that", function(){
