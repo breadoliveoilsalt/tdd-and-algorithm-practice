@@ -34,18 +34,44 @@ class Node {
 class PriorityQueue {
 
   constructor() {
-    this.data = []
+    this.data = [null]
   }
 
   insert(node) {
     this.checkValidNode(node)
     this.data.push(node)
+    this.bubbleUpFrom(this.data.length - 1)
   }
 
   checkValidNode(node) {
     if (!(node instanceof Node)) {
       throw new Error("Input is not a valid node.")
     }
+  }
+
+  bubbleUpFrom(currentNodeIndex) {
+
+    let currentNode = this.data[currentNodeIndex]
+
+    let parentNodeIndex = this.getParentIndexOf(currentNodeIndex)
+    let parentNode = this.data[parentNodeIndex]
+
+    while (currentNode.priority < parentNode.priority) {
+
+      if (currentNodeIndex <= 1) {
+        return
+      }
+
+      this.swap(currentNodeIndex, parentNodeIndex)
+      currentNodeIndex = parentNodeIndex
+      currentNode = this.data[currentNodeIndex]
+      parentNodeIndex = this.getParentIndexOf(currentNodeIndex)
+      parentNode = this.data[parentNodeIndex]
+    }
+  }
+
+  getParentIndexOf(index) {
+    return Math.floor(index/2)
   }
 
 }

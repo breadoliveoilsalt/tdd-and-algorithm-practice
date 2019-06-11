@@ -8,6 +8,8 @@ var sinon = require('sinon');
 var { Node } = require('../algos/priorityQueue')
 var { PriorityQueue, errorTester } = require('../algos/priorityQueue')
 
+// To try: using 'should' more.  Also, this might depend on requiring sinon-chai
+
 describe("errorTester", function() {
   it("should throw an error and the test should know that", function(){
       // This passes.
@@ -66,6 +68,7 @@ describe("Priority Queue Tests", function() {
           // NEED TO FIGURE OUT WHY THIS IS NOT WORKING.  PROBABLY TESTS FOR typeof
           // expect(pq1.data[0]).to.be.a("node")
           // NOTE: this works:
+          // Need to add tests that make sure data[0] is null!
           expect(pq1.data[0]).to.be.an.instanceof(Node)
           let n2 = new Node({value: 15, priority: 99})
           pq1.insert(n2)
