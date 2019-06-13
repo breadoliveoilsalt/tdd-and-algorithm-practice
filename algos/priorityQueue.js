@@ -51,6 +51,10 @@ class PriorityQueue {
 
   bubbleUpFrom(currentNodeIndex) {
 
+    if (currentNodeIndex <= 1) {
+      return
+    }
+
     let currentNode = this.data[currentNodeIndex]
 
     let parentNodeIndex = this.getParentIndexOf(currentNodeIndex)
@@ -59,10 +63,6 @@ class PriorityQueue {
     debugger
 
     while (currentNode.priority < parentNode.priority) {
-
-      if (currentNodeIndex <= 1) {
-        return
-      }
 
       this.swap(currentNodeIndex, parentNodeIndex)
       currentNodeIndex = parentNodeIndex
@@ -81,6 +81,11 @@ class PriorityQueue {
 function errorTester() {
   throw new Error("You got an error, bro!")
 }
+
+let n1 = new Node({value: "apple", priority: 24})
+let pq = new PriorityQueue()
+
+pq.insert(n1)
 
 module.exports = {
   Node: Node,
