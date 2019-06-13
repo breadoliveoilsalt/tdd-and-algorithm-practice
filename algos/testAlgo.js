@@ -3,6 +3,8 @@ function addFiveTo(num) {
   return 5 + num
 }
 
+addFiveTo(6)
+
 module.exports = {
   addFiveTo: addFiveTo,
 }

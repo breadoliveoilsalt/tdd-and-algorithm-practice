@@ -56,6 +56,8 @@ class PriorityQueue {
     let parentNodeIndex = this.getParentIndexOf(currentNodeIndex)
     let parentNode = this.data[parentNodeIndex]
 
+    debugger
+
     while (currentNode.priority < parentNode.priority) {
 
       if (currentNodeIndex <= 1) {
