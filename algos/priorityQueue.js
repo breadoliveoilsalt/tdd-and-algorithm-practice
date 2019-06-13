@@ -62,8 +62,9 @@ class PriorityQueue {
 
     debugger
 
-    while (currentNode.priority < parentNode.priority) {
+    while (currentNode.priority > parentNode.priority) {
 
+      debugger
       this.swap(currentNodeIndex, parentNodeIndex)
       currentNodeIndex = parentNodeIndex
       currentNode = this.data[currentNodeIndex]
@@ -83,9 +84,12 @@ function errorTester() {
 }
 
 let n1 = new Node({value: "apple", priority: 24})
+let n2 = new Node({value: "pear", priority: 100})
 let pq = new PriorityQueue()
 
 pq.insert(n1)
+pq.insert(n2)
+console.log(pq.data)
 
 module.exports = {
   Node: Node,
