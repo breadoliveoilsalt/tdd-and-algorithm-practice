@@ -2,6 +2,7 @@
 
 // Note that this is intentionally a maxheap structure. Some advocate for minheap.
 // for testing at the node console: let {Node} = require('./algos/priorityQueue')
+// It assumes the number with the highest priority should be at the top and go first.
 
 class Node {
 
@@ -30,7 +31,6 @@ class Node {
 
 }
 
-
 class PriorityQueue {
 
   constructor() {
@@ -49,6 +49,7 @@ class PriorityQueue {
     }
   }
 
+// Not really working either
   bubbleUpFrom(currentNodeIndex) {
 
     if (currentNodeIndex <= 1) {
@@ -56,25 +57,52 @@ class PriorityQueue {
     }
 
     let currentNode = this.data[currentNodeIndex]
-
     let parentNodeIndex = this.getParentIndexOf(currentNodeIndex)
     let parentNode = this.data[parentNodeIndex]
 
-    debugger
-
     while (currentNode.priority > parentNode.priority) {
-
       debugger
       this.swap(currentNodeIndex, parentNodeIndex)
-      currentNodeIndex = parentNodeIndex
-      currentNode = this.data[currentNodeIndex]
-      parentNodeIndex = this.getParentIndexOf(currentNodeIndex)
-      parentNode = this.data[parentNodeIndex]
+      this.bubbleUpFrom(parentNodeIndex)
     }
+
+    return
+
   }
+
+// This keeps getting errors when parentIndex becomes null and the while loop tries to read it:
+  // bubbleUpFrom(currentNodeIndex) {
+  //
+  //   if (currentNodeIndex <= 1) {
+  //     return
+  //   }
+  //
+  //   let currentNode = this.data[currentNodeIndex]
+  //
+  //   let parentNodeIndex = this.getParentIndexOf(currentNodeIndex)
+  //   let parentNode = this.data[parentNodeIndex]
+  //
+  //   debugger
+  //
+  //   while (currentNode.priority > parentNode.priority && currentNodeIndex > 1) {
+  //
+  //     debugger
+  //     this.swap(currentNodeIndex, parentNodeIndex)
+  //     currentNodeIndex = parentNodeIndex
+  //     currentNode = this.data[currentNodeIndex]
+  //     parentNodeIndex = this.getParentIndexOf(currentNodeIndex)
+  //     parentNode = this.data[parentNodeIndex]
+  //   }
+  // }
 
   getParentIndexOf(index) {
     return Math.floor(index/2)
+  }
+
+  swap(firstIndex, secondIndex) {
+    let temp = this.data[firstIndex]
+    temp[firstIndex] = temp[secondIndex]
+    temp[secondIndex] = temp
   }
 
 }
