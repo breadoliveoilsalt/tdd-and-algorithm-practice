@@ -58,11 +58,11 @@ describe("Priority Queue Tests", function() {
 
     })
 
-    it("on initialization, the data property should have 'null' at index 0"), function(){
+    it("on initialization, the data property should have 'null' at index 0" , function(){
       let pq = new PriorityQueue()
       expect(pq.data).to.be.a("array").with.lengthOf(1)
-      expect(pq.data[0]).to.equal("null")
-    }
+      expect(pq.data[0]).to.equal(null)
+    })
 
     describe("#insert", function(){
         it("should insert a Node into the data property", function() {
@@ -82,19 +82,29 @@ describe("Priority Queue Tests", function() {
         it("should call #bubbleUpFrom", function() {
           let n1 = new Node({value: "apple", priority: 24})
           let pq = new PriorityQueue()
-          // let insertSpy = sinon.spy(pq1, "insert")
           let bubbleUpFromSpy = sinon.spy(pq, "bubbleUpFrom")
           pq.insert(n1)
 
           expect(bubbleUpFromSpy.calledOnce).to.be.true
-          insertSpy.restore()
           bubbleUpFromSpy.restore()
 
         })
 
-        it("should move an inserted Node to the correct position"), function(){
+        it("should move an inserted Node to the correct position", function() {
 
-        }
+          describe("First test:", function() {
+            const n1 = new Node({value: "apple", priority: 24})
+            const n2 = new Node({value: 15, priority: 99})
+            let pq = new PriorityQueue()
+
+            pq.insert(n1)
+            pq.insert(n2)
+
+            expect(pq.data[1]).to.equal(n2)
+
+          })
+
+        })
     })
 
   })
