@@ -40,6 +40,7 @@ class PriorityQueue {
   insert(node) {
     this.checkValidNode(node)
     this.data.push(node)
+    debugger
     this.bubbleUpFrom(this.data.length - 1)
   }
 
@@ -49,7 +50,6 @@ class PriorityQueue {
     }
   }
 
-// Not really working either
   bubbleUpFrom(currentNodeIndex) {
 
     if (currentNodeIndex <= 1) {
@@ -57,18 +57,47 @@ class PriorityQueue {
     }
 
     let currentNode = this.data[currentNodeIndex]
+
     let parentNodeIndex = this.getParentIndexOf(currentNodeIndex)
     let parentNode = this.data[parentNodeIndex]
 
-    while (currentNode.priority > parentNode.priority) {
-      debugger
-      this.swap(currentNodeIndex, parentNodeIndex)
-      this.bubbleUpFrom(parentNodeIndex)
+    while (currentNode.priority > parentNode.priority && currentNodeIndex > 1) {
+
+      this.swap(parentNodeIndex, currentNodeIndex)
+      if (parentNodeIndex <= 1) {
+        break
+      } else {
+      currentNodeIndex = parentNodeIndex
+      currentNode = this.data[currentNodeIndex]
+      parentNodeIndex = this.getParentIndexOf(currentNodeIndex)
+      parentNode = this.data[parentNodeIndex]
+      }
     }
-
-    return
-
   }
+
+// Not really working either - this doesn't work b/c we get stuck in the while
+// loop, even when the recursive call returns. Still need a check for parentIndex
+// being 1.
+  // bubbleUpFrom(currentNodeIndex) {
+  //
+  //   if (currentNodeIndex <= 1) {
+  //     return
+  //   }
+  //
+  //   console.log("Start, currentNodeIndex:", currentNodeIndex)
+  //   let currentNode = this.data[currentNodeIndex]
+  //   let parentNodeIndex = this.getParentIndexOf(currentNodeIndex)
+  //   let parentNode = this.data[parentNodeIndex]
+  //
+  //   while (currentNode.priority > parentNode.priority) {
+  //     this.swap(currentNodeIndex, parentNodeIndex)
+  //     this.bubbleUpFrom(parentNodeIndex)
+  //     console.log("While loop, parentNodeIndex:", parentNodeIndex)
+  //   }
+  //
+  //   return
+  //
+  // }
 
 // This keeps getting errors when parentIndex becomes null and the while loop tries to read it:
   // bubbleUpFrom(currentNodeIndex) {
@@ -101,8 +130,8 @@ class PriorityQueue {
 
   swap(firstIndex, secondIndex) {
     let temp = this.data[firstIndex]
-    temp[firstIndex] = temp[secondIndex]
-    temp[secondIndex] = temp
+    this.data[firstIndex] = this.data[secondIndex]
+    this.data[secondIndex] = temp
   }
 
 }
