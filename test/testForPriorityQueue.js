@@ -101,6 +101,21 @@ describe("Priority Queue Tests", function() {
             pq.insert(n2)
 
             expect(pq.data[1]).to.equal(n2)
+          })
+
+          describe("Second test:", function() {
+            const n1 = new Node({value: "apple", priority: 24})
+            const n2 = new Node({value: 15, priority: 54})
+            const n3 = new Node({value: [], priority: 99})
+            let pq = new PriorityQueue()
+
+            pq.insert(n1)
+            pq.insert(n2)
+            pq.insert(n3)
+
+            expect(pq.data[1]).to.equal(n3)
+            expect(pq.data[2]).to.equal(n1)
+            expect(pq.data[3]).to.equal(n2)
 
           })
 
