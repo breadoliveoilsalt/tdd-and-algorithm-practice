@@ -75,6 +75,52 @@ class PriorityQueue {
     }
   }
 
+  extractTopPriority() {
+    const topPriority = this.data[1]
+    this.data[1] = this.data.pop()
+    this.bubbleDownFrom(1)
+    return topPriority
+  }
+
+  bubbleDownFrom(index) {
+    return
+  }
+
+
+  // bubbleDownFrom(index) {
+  //     // some sources say swap with left child before right; some say swap with larger child; some say swap with lesser child.
+  //     // Must pick smaller one so smaller one is at the root (and every sub root)
+  //
+  //
+  //     while (true) {
+  //
+  //       let current = this.data[index]
+  //       let leftChild = this.data[this.getLeftChildIndexOf(index)]
+  //       let rightChild = this.data[this.getRightChildIndexOf(index)]
+  //
+  //       debugger
+  //
+  //       if (this.isLeafNode(index)){
+  //         break
+  //       }
+  //
+  //       if (current <= leftChild && current <= rightChild) {
+  //         break
+  //       }
+  //
+  //       // Swap with the lesser child -- this way the parent of any sub-tree is always the minimum of that tree
+  //       if (leftChild < rightChild || rightChild === undefined) {
+  //           // Note: I only added the || above after some testing. Not sure if more rigorous conditions needed here.
+  //         this.swap(index, this.getLeftChildIndexOf(index))
+  //         index = this.getLeftChildIndexOf(index)
+  //       } else {
+  //         this.swap(index, this.getRightChildIndexOf(index))
+  //         index = this.getRightChildIndexOf(index)
+  //       }
+  //     }
+  //   }
+
+
 // Not really working either - this doesn't work b/c we get stuck in the while
 // loop, even when the recursive call returns. Still need a check for parentIndex
 // being 1.
@@ -126,6 +172,18 @@ class PriorityQueue {
 
   getParentIndexOf(index) {
     return Math.floor(index/2)
+  }
+
+  getLeftChildIndexOf(index) {
+    return index * 2
+  }
+
+  getRightChildIndexOf(index) {
+    return (index * 2) + 1
+  }
+
+  isLeafNode(index) {
+    return index >= this.data.length/2 // Note: no need for Math.floor!
   }
 
   swap(firstIndex, secondIndex) {
